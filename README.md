@@ -76,5 +76,7 @@ Here is an example program which loops 8 times, with each example less abstract 
 
 
 Ideas for the future:
+
 Since the program's entire state is conveniently stored in a single binary string, binBracket can easily be loaded and saved to a file, or even run out of one. Though binBracket's current implementation is not optimized for speed, and is not in a parallelizeable state (making it bad for computational purposes), I can see it being used to compute tasks that would normally take a computer days to complete -- granted, binBracket wouldn't be the fastest solution, but a binBracket program backed up to files regularly would be highly resilient to unforseen events like power loss, compared to programs stored solely in RAM.
-I plan on creating sample scripts to show off binBracket's capabilities, such as creating a custom functions system and a dynamically-sized vector, and computing the first N primes or so.
+
+I plan on creating sample scripts to show off binBracket's capabilities, such as creating a custom functions system and a dynamically-sized vector,o or computing the first N prime numbers.
