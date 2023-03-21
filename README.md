@@ -15,8 +15,8 @@ Here are the eight currently-implemented commands:
 
 	Sets the contents of a bracket at a certain position to the next position index after pos and its bracket.
 	
-	{0}pos{0} yields {100}pos{0}.
-	{0}{0}pos{0} yields {101}pos{0}.
+	{0}pos{0} yields {11}pos{0}.
+	{0}{0}pos{0} yields {100}pos{0}.
 
 01: goto (*)
 
