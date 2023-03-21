@@ -44,7 +44,7 @@ Here are the eight currently-implemented commands:
 0101: branch (%)
 	
 	Goes to a certain position if a number at a position is greater than the other at a different position.
-	{1}{10}branch{0}{1}{1001}subtract{0}{1}add{0}{1} yields {10}{10}branch{0}{1}{1001}subtract{0}{1}add{0}{1}
+	{1}{10}branch{0}{1}{1001}subtract{0}{1}add{0}{1} yields {10}{10}branch{0}{1}{1001}subtract{0}{1}add{0}{1} (Note how the subtract function is skipped due to branch)
 
 0110: destroy (#)
 
