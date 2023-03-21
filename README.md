@@ -58,9 +58,15 @@ Here are the eight currently-implemented commands:
 	declare{1}{10} yields declare{10}{1}{10}
 
 Here is an example program which loops 8 times, with each example less abstract than the last.
+
 {0}; {1}; {1000}; branch({0}, {10}, {1100}); add({0},{1}); goto({0}); {0} 
+
 {0}; {1}; {1000}; %({0}, {10}, {1100}); +({0}, {1}); *({0}); {0} 
+
 {0}{1}{1000}%{0}{10}{1100}+{0}{1}*{0}{0}
+
 {0}{1}{1000}{0101}{0}{10}{1100}{011}{0}{1}{01}{0}{0}
+
 0 1 1000 0101 0 10 1100 011 0 1 01 0 0 
+
 0010110101000111011000110011110100011110001001100000  (Entering this into the V0.1 compiler will run the program, outputting a new but similar binary string.)
