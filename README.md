@@ -16,7 +16,7 @@ Here are the eight currently-implemented commands:
 	Sets the contents of a bracket at a certain position to the next position index after pos and its bracket.
 	
 	{0}pos{0} yields {11}pos{0}.
-	{0}{0}pos{0} yields {100}pos{0}.
+	{0}{0}pos{1} yields {0}{100}pos{1}.
 
 01: goto (*)
 
@@ -28,13 +28,13 @@ Here are the eight currently-implemented commands:
 
 	Reduces the number within a bracket by a value at a certain position.
 	Adding to a bracket with a 0 at the front keeps the 0 at the front; this constitutes changing a value to a different command.
-  	{100}{}subtract{0}{1} yields {11}subtract{0}{1}
+  	{100}{1}subtract{0}{1} yields {11}{1}subtract{0}{1}
 	
 011: add (+)
 
 	Increases the number within a bracket by a value at a certain position.
   	Adding to a bracket with a 0 at the front keeps the 0 at the front; this constitutes changing a value to a different command.
-	{100}add{0}{1} yields {101}add{0}{1}
+	{100}{1}add{0}{1} yields {101}{1}add{0}{1}
 	
 0100: set (=)
 
@@ -55,7 +55,7 @@ Here are the eight currently-implemented commands:
 
 	Creates a bracket BEFORE a certain position with the declared value.
 	declare{0}{1} yields {1}declare{0}{1}
-	declare{1}{10} yields declare{10}{1}{10}
+	declare{1}{10} yields declare{10}{1}{10} (performing this a second time will yield declare{10}{1}{1}{10})
 
 Here is an example program which loops 8 times, with each example less abstract than the last.
 
