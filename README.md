@@ -3,7 +3,7 @@ The binBracket language is an esolang somewhat similar to Brainf---, containing 
 
 Each cell contains a raw binary string which can be used to represent the program's memory and instructions. Under the hood, memory and instructions are stored as a vector containing boolean data.
 
-The current implementation I've made of binBracket in C++ is probably horribly cursed, as this is my first go at a C++ program. I wrote the entire first working draft of this language in less than six hours.
+The current implementation I've made of binBracket in C++ is probably horribly cursed, as this is my first go at a C++ program. I wrote the entire first working draft of this language in just about six hours.
 
 Brackets are (currently) represented within input data using every second inputted bit, in the format dBdBdBdB... where d represents data and B represents bracketing bits. A bracketing bit of zero essentially acts as a closing bracket; all data bits after the last zero bracketing bit, and before the latest bracketing bit, are conceptually placed within the same bracket/memory cell/binary string/boolean vector... thingy. Everything is still in early stages of development. I don't quite have names for everything yet.
 
