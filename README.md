@@ -1,7 +1,7 @@
 # binBracket
 The binBracket language is an esolang somewhat similar to Brainf---, containing a very small instruction set. However, unlike Brainf--- or many other conventional esolangs I know of, both a binBracket program's memory AND instructions are stored on a single tape. This means that the instructions executed by a program can be manipulated during runtime by the program itself, which can allow for incredibly complex behaviors. binBracket's instructions use arguments, relying on information contained within other conceptual memory cells ("brackets") to perform tasks. For instance, a memory cell-bracket containing the binary representation of an addition function would look to the next two cells as pointers, adding the number at the location of the second pointer to the number at the location of the first pointer. These pointers themselves can be changed by instructions, alongside everything else.
 
-Each cell contains a raw binary string which can be used to represent the program's memory and instructions. Under the hood, memory and instructions are stored as a vector containing boolean data.
+Each cell contains a raw binary string which can be used to represent the program's memory and instructions. Under the hood, memory and instructions are stored as a vector of vectors containing boolean data.
 
 The current implementation I've made of binBracket in C++ is probably horribly cursed, as this is my first go at a C++ program. I wrote the entire first working draft of this language in just about six hours.
 
