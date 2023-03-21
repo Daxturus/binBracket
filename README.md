@@ -28,12 +28,12 @@ Here are the eight currently-implemented commands:
 
 	Reduces the number within a bracket by a value at a certain position.
 	Adding to a bracket with a 0 at the front keeps the 0 at the front; this constitutes changing a value to a different command.
-  {100}{}subtract{0}{1} yields {11}subtract{0}{1}
+  	{100}{}subtract{0}{1} yields {11}subtract{0}{1}
 	
 011: add (+)
 
 	Increases the number within a bracket by a value at a certain position.
-  Adding to a bracket with a 0 at the front keeps the 0 at the front; this constitutes changing a value to a different command.
+  	Adding to a bracket with a 0 at the front keeps the 0 at the front; this constitutes changing a value to a different command.
 	{100}add{0}{1} yields {101}add{0}{1}
 	
 0100: set (=)
