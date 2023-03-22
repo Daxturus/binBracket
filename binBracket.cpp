@@ -50,19 +50,19 @@ class binBracket
 
 int main(int argc, char** argv)
 {
-	system("clear"); //Clear text
-	cout << "binBracket v0.1";
+	//system("clear"); //Clear text. Removed for now.
+	cout << "\n\nbinBracket v0.15";
+	vector<binBracket> binBrackets;
 	if (argc < 2)
 	{
-		cout << "\nPlease enter code as an argument, or use \"help\" (without quotes) to see commands.";
+		cout << "\nPlease enter binBracket code to run it, or use \"--help\" (without quotes) as the first argument to see commands.";
 		return -1;
 	}
-	if (argv[1] == "help")
+	if (argv[1] == "--help")
 	{
-		cout << "\nThis version of the compiler only accepts binary code as input. Max 65536 characters.";
+		cout << "\nTo run this program, enter one of these arguments before typing in your code:\n\n--run-binary-verbose\nAccepts a raw binary string\n\n--run-separated-verbose\nAccepts commands and data separated by spaces";
 	}
-	vector<binBracket> binBrackets;
-	if (argc < 3)
+	if (argc == 2)
 	{
 		char argument[65536];
 		strcpy(argument, argv[1]);
@@ -109,24 +109,55 @@ int main(int argc, char** argv)
 			++i;
 			bracketSignifier = !bracketSignifier;
 		}
-		cout << "\nNumber of bin brackets:\n" << binBrackets.size();
-		cout << "\nHere are each bin bracket:\n";
-		const int max3 = binBrackets.size();
-		i = 0;
-		while (i < max3)
+	}
+	if (argc > 2)
+	{
+		for (int I = 1; I < argc; I++)
 		{
-			for (int j = 0; j < binBrackets[i].data.size(); j++)
+			char argument[65536];
+			strcpy(argument, argv[I]);
+			vector<bool> binary;
+			int i = 0;
+			int max = strlen(argv[I]);
+			while (i < max)
 			{
-				cout << binBrackets[i].data[j];
+				char thisChar = argument[i];
+				cout << thisChar;
+				if (thisChar == '0')
+				{
+					binary.push_back(false);
+				}
+				if (thisChar == '1')
+				{
+					binary.push_back(true);
+				}
+				++i;
 			}
-			++i;
-			cout << "\n";
+			binBracket currentBracket = binBracket();
+			int max2 = binary.size();
+			i = 0;
+			while (i < max2)
+			{
+				bool thisThingymabob = binary[i];
+				currentBracket.data.push_back(binary[i]);
+				++i;
+			}
+			binBrackets.push_back(currentBracket);
 		}
 	}
-	else
+	cout << "\nNumber of bin brackets:\n" << binBrackets.size();
+	cout << "\nHere are each bin bracket:\n";
+	const int max3 = binBrackets.size();
+	int i = 0;
+	while (i < max3)
 	{
-		//todo: better interpreters that dont just take raw binary strings lol
-	}
+		for (int j = 0; j < binBrackets[i].data.size(); j++)
+		{
+			cout << binBrackets[i].data[j];
+		}
+		++i;
+		cout << "\n";
+		}
 	int binCount = binBrackets.size();
 	const int origBinCount = binCount;
 	int index = 0;
@@ -180,13 +211,15 @@ int main(int argc, char** argv)
 					{
 						if (binBrackets[pos1].dataToIndex() > binBrackets[pos2].dataToIndex())
 						{
-							cout << " Command executed, greater";
+							cout << " Command executed, greater ";
+							cout << binBrackets[pos1].dataToIndex() << " > " << binBrackets[pos2].dataToIndex();
 							index = gotoPos;
 							advance = false;
 						}
 						else
 						{
-							cout << " Command executed, not greater";
+							cout << " Command executed, not greater ";
+							cout << binBrackets[pos1].dataToIndex() << " <= " << binBrackets[pos2].dataToIndex();
 							index = index + 3;
 						}
 					}
@@ -215,11 +248,12 @@ int main(int argc, char** argv)
 				if (index + 2 < binCount) //is it safe to advance?
 				{
 					int pos = binBrackets[index+1].dataToIndex();
-					if (pos < binCount)
+					int pos2 = binBrackets[index+2].dataToIndex();
+					if (pos < binCount && pos2 < binCount)
 					{
 						cout << " Command executed ";
 						binBracket newBin = binBracket();
-						newBin.data = binBrackets[index+2].data;
+						newBin.data = binBrackets[pos2].data;
 						cout << "Inserted data to " << pos;
 						binBrackets.insert(binBrackets.begin() + pos, 1, newBin);
 						if (pos <= index)
@@ -308,7 +342,7 @@ int main(int argc, char** argv)
 		}
 		binCount = binBrackets.size();
 	}
-	cout << "\nFinal bin bracket code:\n";
+	cout << "\nOutputted binary:\n";
 	string outbin = "";
 	for (int j = 0; j < binBrackets.size(); j++)
 	{
@@ -333,6 +367,24 @@ int main(int argc, char** argv)
 		}	
 	}
 	cout << outbin;
-	cout << "\n";
+	outbin = "";
+	cout << "\nBinary converted to bracket notation:\n";
+	for (int j = 0; j < binBrackets.size(); j++)
+	{
+		outbin = outbin + "{";
+		for (int k = 0; k < binBrackets[j].data.size(); k++)
+		{
+			if (binBrackets[j].data[k] == false)
+			{
+				outbin = outbin + "0";
+			}
+			if (binBrackets[j].data[k] == true)
+			{
+				outbin = outbin + "1";
+			}
+		}
+		outbin = outbin + "} ";	
+	}
+	cout << outbin << "\n";
 	return 0;
 }
