@@ -55,7 +55,7 @@ Here are the eight currently-implemented commands:
 	
 0111: declare (!)
 
-	Creates a bracket BEFORE a certain position with the declared value.
+	Creates a bracket BEFORE a certain position with the value at another position.
 	declare{0}{1} yields {1}declare{0}{1}
 	declare{1}{10} yields declare{10}{1}{10} (performing this a second time will yield declare{10}{1}{1}{10})
 
