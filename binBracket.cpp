@@ -51,7 +51,7 @@ class binBracket
 int main(int argc, char** argv)
 {
 	//system("clear"); //Clear text. Removed for now.
-	cout << "\n\nbinBracket v0.15";
+	cout << "\n\nbinBracket v0.21";
 	vector<binBracket> binBrackets;
 	if (argc < 2)
 	{
@@ -145,6 +145,31 @@ int main(int argc, char** argv)
 			binBrackets.push_back(currentBracket);
 		}
 	}
+	cout << "\nInputted binary:\n";
+	string inbin = "";
+	for (int j = 0; j < binBrackets.size(); j++)
+	{
+		for (int k = 0; k < binBrackets[j].data.size(); k++)
+		{
+			if (binBrackets[j].data[k] == false)
+			{
+				inbin = inbin + "0";
+			}
+			if (binBrackets[j].data[k] == true)
+			{
+				inbin = inbin + "1";
+			}
+			if (k < binBrackets[j].data.size() - 1)
+			{
+				inbin = inbin + "1";
+			}
+			else
+			{
+				inbin = inbin + "0";
+			}
+		}	
+	}
+	cout << inbin;
 	cout << "\nNumber of bin brackets:\n" << binBrackets.size();
 	cout << "\nHere are each bin bracket:\n";
 	const int max3 = binBrackets.size();
@@ -190,8 +215,8 @@ int main(int argc, char** argv)
 				cout << " Set Command found";
 				if (index + 2 < binCount) //is it safe to advance?
 				{
-					int pos1 = binBrackets[index+1].dataToIndex();
-					int pos2 = binBrackets[index+2].dataToIndex();
+					int pos1 = index + binBrackets[index+1].dataToIndex();
+					int pos2 = index + binBrackets[index+2].dataToIndex();
 					if (pos1 < binCount && pos2 < binCount)
 					{
 						cout << " Command executed";
@@ -204,9 +229,9 @@ int main(int argc, char** argv)
 				cout << " Branch Command found";
 				if (index + 3 < binCount) //is it safe to advance?
 				{
-					int pos1 = binBrackets[index+1].dataToIndex();
-					int pos2 = binBrackets[index+2].dataToIndex();
-					int gotoPos = binBrackets[index+3].dataToIndex();
+					int pos1 = index + binBrackets[index+1].dataToIndex();
+					int pos2 = index + binBrackets[index+2].dataToIndex();
+					int gotoPos = index + binBrackets[index+3].dataToIndex();
 					if (pos1 < binCount && pos2 < binCount && gotoPos < binCount)
 					{
 						if (binBrackets[pos1].dataToIndex() > binBrackets[pos2].dataToIndex())
@@ -230,7 +255,7 @@ int main(int argc, char** argv)
 				cout << " Destroy Command found";
 				if (index + 1 < binCount)
 				{
-					int pos = binBrackets[index+1].dataToIndex();
+					int pos = index + binBrackets[index+1].dataToIndex();
 					if (pos < binCount)
 					{
 						cout << " Command executed";
@@ -247,8 +272,8 @@ int main(int argc, char** argv)
 				cout << " Declare Command found";
 				if (index + 2 < binCount) //is it safe to advance?
 				{
-					int pos = binBrackets[index+1].dataToIndex();
-					int pos2 = binBrackets[index+2].dataToIndex();
+					int pos = index + binBrackets[index+1].dataToIndex();
+					int pos2 = index + binBrackets[index+2].dataToIndex();
 					if (pos < binCount && pos2 < binCount)
 					{
 						cout << " Command executed ";
@@ -271,8 +296,8 @@ int main(int argc, char** argv)
 				cout << " Subtract Command found";
 				if (index + 2 < binCount) //is it safe to advance?
 				{
-					int pos1 = binBrackets[index+1].dataToIndex();
-					int pos2 = binBrackets[index+2].dataToIndex();
+					int pos1 = index + binBrackets[index+1].dataToIndex();
+					int pos2 = index + binBrackets[index+2].dataToIndex();
 					if (pos1 < binCount && pos2 < binCount)
 					{
 						int result = binBrackets[pos1].dataToIndex()-binBrackets[pos2].dataToIndex();
@@ -292,8 +317,8 @@ int main(int argc, char** argv)
 				cout << " Add Command found";
 				if (index + 2 < binCount) //is it safe to advance?
 				{
-					int pos1 = binBrackets[index+1].dataToIndex();
-					int pos2 = binBrackets[index+2].dataToIndex();
+					int pos1 = index + binBrackets[index+1].dataToIndex();
+					int pos2 = index + binBrackets[index+2].dataToIndex();
 					if (pos1 < binCount && pos2 < binCount)
 					{
 						int result = binBrackets[pos1].dataToIndex()+binBrackets[pos2].dataToIndex();
@@ -312,7 +337,7 @@ int main(int argc, char** argv)
 				cout << " Pos Command found";
 				if (index + 1 < binCount) //is it safe to advance?
 				{
-					int pos = binBrackets[index+1].dataToIndex();
+					int pos = index + binBrackets[index+1].dataToIndex();
 					if (pos < binCount)
 					{
 						cout << " Command executed";
@@ -326,7 +351,7 @@ int main(int argc, char** argv)
 				cout << " Goto Command found";
 				if (index + 1 < binCount) //is it safe to advance?
 				{
-					int pos = binBrackets[index+1].dataToIndex();
+					int pos = index + binBrackets[index+1].dataToIndex();
 					if (pos < binCount)
 					{
 						cout << " Command executed";
