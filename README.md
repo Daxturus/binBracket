@@ -16,64 +16,37 @@ Here are the eight currently-implemented commands:
 00: pos ($)
 
 	Sets the contents of a bracket at a certain position to the next position index after pos and its bracket.
-	
-	{0}pos{0} yields {11}pos{0}.
-	{0}{0}pos{1} yields {0}{100}pos{1}.
 
 01: goto (*)
 
 	Moves the current position index to a certain index. 
-	
-	goto{0} infinitely loops.
+
 	
 010: subtract (-)
 
 	Reduces the number within a bracket by a value at a certain position.
 	Adding to a bracket with a 0 at the front keeps the 0 at the front; this constitutes changing a value to a different command.
-  	{100}{1}subtract{0}{1} yields {11}{1}subtract{0}{1}
 	
 011: add (+)
 
 	Increases the number within a bracket by a value at a certain position.
   	Adding to a bracket with a 0 at the front keeps the 0 at the front; this constitutes changing a value to a different command.
-	{100}{1}add{0}{1} yields {101}{1}add{0}{1}
 	
 0100: set (=)
 
 	Sets a number at a certain position to a value from another position.
-	{1}{1000}set{1}{0} yields {1}{1}set{1}{0}
 	
 0101: branch (%)
 	
 	Goes to a certain position if a number at a position is greater than the other at a different position.
-	{1}{10}branch{0}{1}{1001}subtract{0}{1}add{0}{1} yields {10}{10}branch{0}{1}{1001}subtract{0}{1}add{0}{1} (Note how the subtract function is skipped due to branch)
 
 0110: destroy (#)
 
 	Removes the bracket at a certain positional index.
-	{1}destroy{0} yields destroy{0}
 	
 0111: declare (!)
 
 	Creates a bracket BEFORE a certain position with the value at another position.
-	declare{0}{1} yields {1}declare{0}{1}
-	declare{1}{10} yields declare{10}{1}{10} (performing this a second time will yield declare{10}{1}{1}{10})
-
-Here is an example program which loops 8 times, with each example less abstract than the last.
-
-{0}; {1}; {1000}; branch({0}, {10}, {1100}); add({0},{1}); goto({0}); {0} 
-
-{0}; {1}; {1000}; %({0}, {10}, {1100}); +({0}, {1}); *({0}); {0} 
-
-{0}{1}{1000}%{0}{10}{1100}+{0}{1}*{0}{0}
-
-{0}{1}{1000}{0101}{0}{10}{1100}{011}{0}{1}{01}{0}{0}
-
-0 1 1000 0101 0 10 1100 011 0 1 01 0 0 
-
-0010110101000111011000110011110100011110001001100000  (Entering this into the V0.1 compiler will run the program, outputting a new but similar binary string.)
-
-
 
 Ideas for the future:
 
